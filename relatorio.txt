@@ -1,0 +1,46 @@
+Francisco Lou - 2211275 | Vinicius Araujo - 2210392
+
+Relatório do trabalho - Função Simples
+
+O código inteiro está funcionando como previsto. Nós não sabíamos exatamente se atribuições aos elementos do array codigo poderiam ser feitas de forma mais otimizada usando funções auxiliares, mas concluímos que não, porque cada caso tinha uma particularidade e achamos mais fácil manter da forma que ficou.
+
+Para encontrar o código hexadecimal correspondente às instruções do arquivo, foi utilizado um switch case que lia as primeiras letras de cada linha, para entender o que a linguagem pedia. Isso foi passado diretamente pelo enunciado do trabalho. Nossa tarefa foi analisar os possíveis casos depois dessas primeiras letras e cobrir todos eles. Para isso, transformamos manualmente as instruções passadas no arquivo para assembly e obtivemos seu código binário (escrito em hexadecimal) pelo objdump. Visto esse código, foi necessário analisar quais bytes representavam cada instrução, o que podia variar e o que nunca variava. Para cada instrução que não varia, inserimos manualmente no vetor codigo e, para as que poderiam variar, foi feito um for loop que inseria cada byte do elemento variável no vetor codigo.
+
+Para a testagem do programa, foram utilizadas algumas funções. Umas foram dadas pelo próprio enunciado, outras não:
+
+// Calcula fatorial
+v1 < p1
+v2 < $1
+v3 < $0
+iflez v1 8
+v2 = v2 * v1
+v1 = v1 - $1
+iflez v3 4
+ret v2
+
+// Testa todos os tipos de soma ($ + $, $ + v, v + $, v + v)
+
+v1 < p1
+v2 = $10 + $10
+v1 = v1 + v2
+v1 = $10 + v1
+v1 = v1 + $10
+ret v1
+
+// Testa todos os tipos de multiplicação ($ * $, $ * v, v * $, v * v)
+
+v1 < p1
+v2 = $10 * $10
+v1 = v1 * v2
+v1 = $10 * v1
+v1 = v1 * $10
+ret v1
+
+// Testa todos os tipos de subtração ($ - $, $ - v, v - $, v - v)
+
+v1 < p1
+v2 = $10 - $5
+v1 = v1 - v2
+v1 = $10 - v1
+v1 = v1 - $10
+ret v1
